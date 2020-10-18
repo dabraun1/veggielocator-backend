@@ -3,15 +3,13 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
+  url: <%= ENV['DATABASE_URL'] ? ENV['DATABASE_URL'] : `heroku config:get DATABASE_URL -a veggielocator-backend` %>
 
 development:
   <<: *default
-  url: <%= `heroku config:get DATABASE_URL -a veggielocator-backend` %>
 
 test:
   <<: *default
-  url: <%= `heroku config:get DATABASE_URL -a veggielocator-backend` %>
 
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
