@@ -2,14 +2,15 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  url: <%= `heroku config:get DATABASE_URL -a veggielocator-backend` %>
   timeout: 5000
 
 development:
   <<: *default
+  url: <%= `heroku config:get DATABASE_URL -a veggielocator-backend` %>
 
 test:
   <<: *default
+  url: <%= `heroku config:get DATABASE_URL -a veggielocator-backend` %>
 
 production:
   <<: *default
